@@ -4,9 +4,9 @@ Tienda de ropa Y2K y accesorios de edición limitada. Proyecto desarrollado con 
 
 ## Vista previa
 
-![Catálogo completo](screenshots/catalogo_todo.png)
-![Ropa](screenshots/catalogo_ropa.png)
-![Accesorios](screenshots/catalogo_accesorios.png)
+![Catálogo completo](screenshots/Catalogo_todo.png)
+![Ropa](screenshots/Catalogo_ropa.png)
+![Accesorios](screenshots/Catalogo_accesorios.png)
 
 ## Funcionalidades
 
