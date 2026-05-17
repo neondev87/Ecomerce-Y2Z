@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TiendaDjango{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <img src="{% static 'img/logo.png' %}" alt="Y2K Django" class="nav-logo-img">
+                &nbsp;&nbsp;Y2K Django
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="/">Catálogo</a></li>
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <li><a href="/admin/">Admin</a></li>
+                    {% endif %}
+                    <li><a href="/pedidos/historial/">Mis pedidos</a></li>
+                    <li><a href="/carrito/" class="nav-carrito">
+                        🛒 Carrito
+                        {% if request.session.carrito %}
+                            <span class="badge-carrito">
+                                {{ request.session.carrito|length }}
+                            </span>
+                        {% endif %}
+                    </a></li>
+                    <li><a href="/usuarios/logout/" class="nav-logout">Salir ({{ user.username }})</a></li>
+                {% else %}
+                    <li><a href="/usuarios/login/">Login</a></li>
+                    <li><a href="/usuarios/registro/" class="btn-nav">Registro</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        {% if messages %}
+            <div class="messages-container">
+                {% for message in messages %}
+                    <div class="message message-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>★ TiendaDjango 2026 — Ropa Y2K & Accesorios Retro ★</p>
+    </footer>
+
+</body>
+</html>
